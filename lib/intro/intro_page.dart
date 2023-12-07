@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:penny_path/expense_mapper.dart';
-import 'package:penny_path/intro_widgets/intro_one.dart';
-import 'package:penny_path/intro_widgets/intro_three.dart';
-import 'package:penny_path/intro_widgets/intro_two.dart';
+import 'package:penny_path/menu/menu_page.dart.dart';
+import 'package:penny_path/intro/intro_widgets/intro_one.dart';
+import 'package:penny_path/intro/intro_widgets/intro_three.dart';
+import 'package:penny_path/intro/intro_widgets/intro_two.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class IntroPage extends StatefulWidget {
+  const IntroPage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<IntroPage> createState() => _IntroPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _IntroPageState extends State<IntroPage> {
   final PageController _controller = PageController();
   bool onLastPage = false;
   @override
