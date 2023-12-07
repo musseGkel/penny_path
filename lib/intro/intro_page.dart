@@ -38,11 +38,14 @@ class _IntroPageState extends State<IntroPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              GestureDetector(
-                child: const Text("Skip"),
-                onTap: () {
-                  _controller.jumpToPage(2);
-                },
+              Opacity(
+                opacity: onLastPage ? 0.0 : 1,
+                child: GestureDetector(
+                  child: const Text("Skip"),
+                  onTap: () {
+                    _controller.jumpToPage(2);
+                  },
+                ),
               ),
               SmoothPageIndicator(
                 controller: _controller,
