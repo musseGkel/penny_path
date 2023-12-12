@@ -1,14 +1,11 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:penny_path/menu/widget/main_menu_item.dart';
 
-class ExpenseMapper extends StatefulWidget {
-  const ExpenseMapper({super.key});
+@RoutePage()
+class MenuView extends StatelessWidget {
+  const MenuView({super.key});
 
-  @override
-  State<ExpenseMapper> createState() => _ExpenseMapperState();
-}
-
-class _ExpenseMapperState extends State<ExpenseMapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

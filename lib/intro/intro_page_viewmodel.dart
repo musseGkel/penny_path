@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-class IntroPageViewModel extends BaseViewModel {
+class IntroViewModel extends BaseViewModel {
   late PageController controller;
 
   bool _onLastPage = false;

@@ -1,24 +1,21 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:penny_path/app/app_router.gr.dart';
 import 'package:penny_path/intro/intro_page_viewmodel.dart';
-import 'package:penny_path/menu/menu_page.dart.dart';
 import 'package:penny_path/intro/intro_widgets/intro_one.dart';
 import 'package:penny_path/intro/intro_widgets/intro_three.dart';
 import 'package:penny_path/intro/intro_widgets/intro_two.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:stacked/stacked.dart';
 
-class IntroPage extends StatefulWidget {
-  const IntroPage({super.key});
+@RoutePage()
+class IntroView extends StatelessWidget {
+  const IntroView({super.key});
 
-  @override
-  State<IntroPage> createState() => _IntroPageState();
-}
-
-class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<IntroPageViewModel>.reactive(
-      viewModelBuilder: () => IntroPageViewModel(),
+    return ViewModelBuilder<IntroViewModel>.reactive(
+      viewModelBuilder: () => IntroViewModel(),
       onViewModelReady: (viewModel) => viewModel.onModelReady(),
       builder: (BuildContext context, viewModel, Widget? child) {
         return Scaffold(
@@ -52,12 +49,7 @@ class _IntroPageState extends State<IntroPage> {
                   GestureDetector(
                     onTap: viewModel.onLastPage
                         ? () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ExpenseMapper(),
-                              ),
-                            );
+                            AutoRouter.of(context).push(const MenuView());
                           }
                         : viewModel.goToNext,
                     child: Text(viewModel.onLastPage ? "Done" : "Next"),
