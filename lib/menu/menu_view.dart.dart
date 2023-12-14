@@ -10,7 +10,14 @@ class MenuView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("PennyPath"),
+        backgroundColor: const Color(0xff7A9E9F),
+        title: const Text(
+          "PennyPath",
+          style: TextStyle(
+            color: Color(0xff000000),
+            fontSize: 18,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Padding(
