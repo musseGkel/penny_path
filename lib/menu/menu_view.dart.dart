@@ -9,6 +9,10 @@ class MenuView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("PennyPath"),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: GridView.builder(
