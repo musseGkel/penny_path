@@ -3,22 +3,27 @@ import 'package:flutter/material.dart';
 class MainMenuItem extends StatelessWidget {
   final int index;
   const MainMenuItem({
-    super.key,
+    Key? key,
     required this.index,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.redAccent,
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      child: Center(
-        child: Text(
-          'Item $index',
-          style: const TextStyle(
-            color: Colors.white,
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+      child: GestureDetector(
+        onTap: () {},
+        child: Card(
+          elevation: 10,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const FlutterLogo(),
+                Text('Menu $index'),
+              ],
+            ),
           ),
         ),
       ),
