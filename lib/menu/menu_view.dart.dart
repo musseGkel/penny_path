@@ -9,6 +9,17 @@ class MenuView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xff7A9E9F),
+        title: const Text(
+          "PennyPath",
+          style: TextStyle(
+            color: Color(0xff000000),
+            fontSize: 18,
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: GridView.builder(
