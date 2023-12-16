@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:penny_path/app/app_router.dart';
+import 'package:penny_path/app/locator.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class IntroViewModel extends BaseViewModel {
   late PageController controller;

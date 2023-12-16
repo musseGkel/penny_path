@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:penny_path/app/app_router.dart';
+import 'package:penny_path/app/locator.dart';
 
 void main() {
+  setupLocator();
   runApp(MyApp());
 }
 
