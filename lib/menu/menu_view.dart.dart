@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_initicon/flutter_initicon.dart';
 import 'package:penny_path/menu/widget/main_menu_item.dart';
 
 @RoutePage()
@@ -11,6 +12,13 @@ class MenuView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff7A9E9F),
+        leading: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Initicon(
+            text: "Full Name",
+            elevation: 4,
+          ),
+        ),
         title: const Text(
           "PennyPath",
           style: TextStyle(

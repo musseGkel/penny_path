@@ -222,6 +222,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_initicon:
+    dependency: "direct main"
+    description:
+      name: flutter_initicon
+      sha256: "5aeda6b16150cb54a34a048a85f9cfddbf36a92135f769ea998d1394dcb54a0f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0+1"
   flutter_lints:
     dependency: "direct dev"
     description:
