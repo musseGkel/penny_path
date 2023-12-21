@@ -49,7 +49,6 @@ class IntroView extends StatelessWidget {
                   GestureDetector(
                     onTap: viewModel.onLastPage
                         ? () {
-                          
                             AutoRouter.of(context).push(const MenuView());
                           }
                         : viewModel.goToNext,
