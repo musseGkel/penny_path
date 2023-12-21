@@ -6,7 +6,18 @@ import 'app_router.gr.dart';
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: IntroView.page, initial: true),
-        AutoRoute(page: MenuView.page),
+        AutoRoute(
+          page: IntroView.page,
+          initial: true,
+        ),
+        AutoRoute(
+          page: MenuView.page,
+        ),
+        AutoRoute(
+          page: SettingView.page,
+        ),
+        AutoRoute(
+          page: AboutView.page,
+        )
       ];
 }
