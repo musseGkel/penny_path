@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class MainMenuItem extends StatelessWidget {
   final int index;
+  final onTap;
   const MainMenuItem({
     Key? key,
     required this.index,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -12,7 +14,7 @@ class MainMenuItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       child: GestureDetector(
-        onTap: () {},
+        onTap: onTap,
         child: Card(
           elevation: 10,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

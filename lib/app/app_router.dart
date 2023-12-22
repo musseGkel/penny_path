@@ -18,6 +18,9 @@ class AppRouter extends $AppRouter {
         ),
         AutoRoute(
           page: AboutView.page,
+        ),
+        AutoRoute(
+          page: ReportView.page,
         )
       ];
 }

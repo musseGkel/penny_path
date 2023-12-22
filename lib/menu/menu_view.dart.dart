@@ -47,6 +47,9 @@ class MenuView extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return MainMenuItem(
               index: index,
+              onTap: () {
+                AutoRouter.of(context).push(const ReportView());
+              },
             );
           },
         ),
