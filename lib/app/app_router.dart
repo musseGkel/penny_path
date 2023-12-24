@@ -8,7 +8,6 @@ class AppRouter extends $AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: IntroView.page,
-          initial: true,
         ),
         AutoRoute(
           page: MenuView.page,
@@ -21,6 +20,7 @@ class AppRouter extends $AppRouter {
         ),
         AutoRoute(
           page: ReportView.page,
+          initial: true,
         )
       ];
 }
