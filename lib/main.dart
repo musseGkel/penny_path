@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Penny path',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff7A9E9F)),
-        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        // colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff7A9E9F)),
+        // useMaterial3: true,
       ),
       routerConfig: _appRouter.config(),
     );

@@ -20,6 +20,9 @@ class AppRouter extends $AppRouter {
         ),
         AutoRoute(
           page: ReportView.page,
+        ),
+        AutoRoute(
+          page: BudgetView.page,
           initial: true,
         )
       ];
