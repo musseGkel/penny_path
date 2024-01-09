@@ -2,6 +2,8 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:penny_path/budget/budget_viewmodel.dart';
 import 'package:penny_path/core/widgets/catagory_item.dart';
+import 'package:penny_path/core/widgets/common_dialog.dart';
+import 'package:penny_path/core/widgets/common_button.dart';
 import 'package:penny_path/theme/colors.dart';
 import 'package:stacked/stacked.dart';
 
@@ -16,7 +18,6 @@ class BudgetView extends StatefulWidget {
 class _BudgetViewState extends State<BudgetView> {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return ViewModelBuilder<BudgetViewModel>.reactive(
       viewModelBuilder: () => BudgetViewModel(),
       onViewModelReady: (viewModel) => viewModel.onModelReady(),
@@ -98,7 +99,8 @@ class _BudgetViewState extends State<BudgetView> {
                             borderColor: viewModel.activeCatagory == index
                                 ? primary
                                 : Colors.transparent,
-                            subLabel: "",
+                            subLabel:
+                                "\$${viewModel.categories[index]["amount"]}",
                             onTap: () {
                               viewModel.changeCatagory(index);
                             },
@@ -110,7 +112,7 @@ class _BudgetViewState extends State<BudgetView> {
                             label: "Add Catagory",
                             subLabel: "add your choice",
                             onTap: () {
-                              viewModel.changeCatagory(index);
+                              viewModel.createCatagory();
                             },
                             borderColor: Colors.transparent,
                           );
@@ -122,80 +124,35 @@ class _BudgetViewState extends State<BudgetView> {
                 const SizedBox(
                   height: 50,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "budget name",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 13,
-                            color: Color(0xff67727d)),
+                SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 25.0,
+                      vertical: 16,
+                    ),
+                    child: CommonButton(
+                      backgroundColor: white,
+                      text: "Add New Budget",
+                      textStyle: const TextStyle(
+                        color: black,
+                        fontSize: 20,
+                        fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w600,
+                        height: 1.55,
                       ),
-                      const TextField(
-                        // controller: _budgetName,
-                        cursorColor: black,
-                        style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: black),
-                        decoration: InputDecoration(
-                            hintText: "Enter Budget Name",
-                            border: InputBorder.none),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: (size.width - 140),
-                            child: const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Enter budget",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13,
-                                      color: Color(0xff67727d)),
-                                ),
-                                TextField(
-                                  // controller: _budgetPrice,
-                                  cursorColor: black,
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      color: black),
-                                  decoration: InputDecoration(
-                                      hintText: "Enter Budget",
-                                      border: InputBorder.none),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                color: primary,
-                                borderRadius: BorderRadius.circular(15)),
-                            child: const Icon(
-                              Icons.arrow_forward,
-                              color: white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) {
+                            return const CommonDialog();
+                          },
+                        );
+                      },
+                    ),
                   ),
-                )
+                ),
               ],
             ),
           ),
