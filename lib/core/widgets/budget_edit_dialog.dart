@@ -2,17 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:penny_path/core/widgets/common_button.dart';
 import 'package:penny_path/theme/colors.dart';
 
-class CommonDialog extends StatelessWidget {
-  const CommonDialog({
+class BudgetEditDialog extends StatefulWidget {
+  final Function(String budgetName, String budgetAmount) onSave;
+
+  const BudgetEditDialog({
     super.key,
+    required this.onSave,
   });
 
   @override
-  Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+  State<BudgetEditDialog> createState() => _BudgetEditDialogState();
+}
 
+class _BudgetEditDialogState extends State<BudgetEditDialog> {
+  late TextEditingController budgetNameController;
+  late TextEditingController budgetAmountController;
+
+  @override
+  void initState() {
+    budgetNameController = TextEditingController();
+    budgetAmountController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
+        print("budgetNameController: ${budgetNameController.text}");
+        print("budgetAmountController: ${budgetAmountController.text}");
+
         return Dialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
@@ -27,24 +46,32 @@ class CommonDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(left: 20, right: 20),
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text("Edit/Create a Budget"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Column(
                     children: [
                       Column(
                         children: [
                           TextField(
-                            // controller: viewModel.budgetName,
+                            onChanged: (value) {
+                              setState(() {});
+                            },
+                            controller: budgetNameController,
                             cursorColor: black,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
                                 color: black),
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text(
                                 "Enter Budget Name",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xff67727d)),
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xff67727d),
+                                ),
                               ),
                               hintText: "Ex. Gas",
                               border: InputBorder.none,
@@ -52,31 +79,35 @@ class CommonDialog extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Column(
                         children: [
                           TextField(
-                            // controller: viewModel.budgetAmount,
+                            onChanged: (value) {
+                              setState(() {});
+                            },
+                            controller: budgetAmountController,
                             cursorColor: black,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.bold,
                               color: black,
                             ),
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text(
                                 "Enter Budget Amount",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xff67727d)),
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xff67727d),
+                                ),
                               ),
                               hintText: "Ex. 123",
                               border: InputBorder.none,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                         ],
@@ -87,6 +118,8 @@ class CommonDialog extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: CommonButton(
+                    isDisabled: budgetAmountController.text.isEmpty ||
+                        budgetNameController.text.isEmpty,
                     backgroundColor: white,
                     text: "Save",
                     textStyle: const TextStyle(
@@ -97,7 +130,17 @@ class CommonDialog extends StatelessWidget {
                       height: 1.55,
                     ),
                     onTap: () {
-                      //   viewModel.modifyCatagory();
+                      print(
+                          "Before Save - budgetNameController: ${budgetNameController.text}");
+                      print(
+                          "Before Save - budgetAmountController: ${budgetAmountController.text}");
+
+                      widget.onSave(
+                        budgetNameController.text,
+                        budgetAmountController.text,
+                      );
+                      Navigator.pop(context);
+                      print("-----------Saved!---------");
                     },
                   ),
                 ),

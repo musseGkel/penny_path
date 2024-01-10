@@ -2,7 +2,7 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:penny_path/budget/budget_viewmodel.dart';
 import 'package:penny_path/core/widgets/catagory_item.dart';
-import 'package:penny_path/core/widgets/common_dialog.dart';
+import 'package:penny_path/core/widgets/budget_edit_dialog.dart';
 import 'package:penny_path/core/widgets/common_button.dart';
 import 'package:penny_path/theme/colors.dart';
 import 'package:stacked/stacked.dart';
@@ -89,34 +89,21 @@ class _BudgetViewState extends State<BudgetView> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: List.generate(
-                      viewModel.categories.length + 1,
+                      viewModel.categories.length,
                       (index) {
-                        if (index < viewModel.categories.length) {
-                          return CatagoryItem(
-                            color: grey.withOpacity(0.15),
-                            icon: viewModel.categories[index]["icon"],
-                            label: viewModel.categories[index]["name"],
-                            borderColor: viewModel.activeCatagory == index
-                                ? primary
-                                : Colors.transparent,
-                            subLabel:
-                                "\$${viewModel.categories[index]["amount"]}",
-                            onTap: () {
-                              viewModel.changeCatagory(index);
-                            },
-                          );
-                        } else {
-                          return CatagoryItem(
-                            color: white,
-                            icon: "assets/images/plus.png",
-                            label: "Add Catagory",
-                            subLabel: "add your choice",
-                            onTap: () {
-                              viewModel.createCatagory();
-                            },
-                            borderColor: Colors.transparent,
-                          );
-                        }
+                        return CatagoryItem(
+                          color: grey.withOpacity(0.15),
+                          icon: viewModel.categories[index]["icon"],
+                          label: viewModel.categories[index]["name"],
+                          borderColor: viewModel.activeCatagory == index
+                              ? primary
+                              : Colors.transparent,
+                          subLabel:
+                              "\$${viewModel.categories[index]["amount"]}",
+                          onTap: () {
+                            viewModel.editCatagory(index);
+                          },
+                        );
                       },
                     ),
                   ),
@@ -146,7 +133,9 @@ class _BudgetViewState extends State<BudgetView> {
                           context: context,
                           barrierDismissible: false,
                           builder: (context) {
-                            return const CommonDialog();
+                            return BudgetEditDialog(
+                              onSave: viewModel.createCatagory,
+                            );
                           },
                         );
                       },

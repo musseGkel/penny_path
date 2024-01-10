@@ -4,47 +4,87 @@ import 'package:stacked/stacked.dart';
 class BudgetViewModel extends BaseViewModel {
   int _activeCategory = -1;
   int get activeCatagory => _activeCategory;
-  late TextEditingController budgetName;
-  late TextEditingController budgetAmount;
+  late TextEditingController budgetNameController;
+  late TextEditingController budgetAmountController;
 
   List categories = [
-    {"name": "Car", "icon": "assets/images/car.png", "amount": 123},
-    {"name": "Sacing", "icon": "assets/images/saving.png", "amount": 123},
-    {"name": "Cash", "icon": "assets/images/cash.png", "amount": 123},
-    {"name": "Charity", "icon": "assets/images/charity.png", "amount": 123},
-    {"name": "Food", "icon": "assets/images/food.png", "amount": 123},
-    {"name": "Gift", "icon": "assets/images/gift.png", "amount": 123}
+    {
+      "id": "1",
+      "name": "Car",
+      "icon": "assets/images/car.png",
+      "amount": 123,
+    },
+    {
+      "id": "2",
+      "name": "Sacing",
+      "icon": "assets/images/saving.png",
+      "amount": 123
+    },
+    {
+      "id": "3",
+      "name": "Cash",
+      "icon": "assets/images/cash.png",
+      "amount": 123
+    },
+    {
+      "id": "4",
+      "name": "Charity",
+      "icon": "assets/images/charity.png",
+      "amount": 123
+    },
+    {
+      "id": "5",
+      "name": "Food",
+      "icon": "assets/images/food.png",
+      "amount": 123
+    },
+    {
+      "id": "6",
+      "name": "Gift",
+      "icon": "assets/images/gift.png",
+      "amount": 123,
+    }
   ];
 
-  changeCatagory(int catagoryId) {
+  editCatagory(int catagoryId) {
     _activeCategory = catagoryId;
-    budgetName.clear();
-    budgetName.text = categories[catagoryId]["name"];
-    budgetAmount.clear();
-    budgetAmount.text = categories[catagoryId]["amount"].toString();
+    budgetNameController.clear();
+    budgetNameController.text = categories[catagoryId]["name"];
+    budgetAmountController.clear();
+    budgetAmountController.text = categories[catagoryId]["amount"].toString();
     notifyListeners();
   }
 
-  createCatagory() {
+  createCatagory(String budgetName, String budgetAmount) {
+    budgetNameController.text = budgetName;
+    budgetAmountController.text = budgetAmount;
+
     Map<String, dynamic> newCategory = {
-      "name": "",
-      "icon": "",
-      "amount": "",
+      "name": budgetName,
+      "icon": "assets/images/gift.png",
+      "amount": budgetAmount,
     };
 
-    categories.add(newCategory);
-    _activeCategory = categories.length - 1;
+    categories.insert(0, newCategory);
+    _activeCategory = 0;
     notifyListeners();
   }
 
   modifyCatagory() {
-    categories[_activeCategory]["name"] = budgetName.text;
-    categories[_activeCategory]["amount"] = budgetAmount.text;
+    categories[_activeCategory]["name"] = budgetNameController.text;
+    categories[_activeCategory]["amount"] = budgetAmountController.text;
     notifyListeners();
   }
 
   onModelReady() {
-    budgetName = TextEditingController(text: "");
-    budgetAmount = TextEditingController(text: "");
+    budgetNameController = TextEditingController(text: "");
+    budgetAmountController = TextEditingController(text: "");
+  }
+
+  @override
+  void dispose() {
+    budgetAmountController.dispose();
+    budgetNameController.dispose();
+    super.dispose();
   }
 }
