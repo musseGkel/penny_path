@@ -19,7 +19,7 @@ class _BudgetViewState extends State<BudgetView> {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<BudgetViewModel>.reactive(
-      viewModelBuilder: () => BudgetViewModel(),
+      viewModelBuilder: () => BudgetViewModel(context),
       onViewModelReady: (viewModel) => viewModel.onModelReady(),
       builder: (BuildContext context, viewModel, Widget? child) {
         return Scaffold(

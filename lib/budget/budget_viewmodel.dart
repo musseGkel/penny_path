@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../services/snack_bar_services.dart';
+
 class BudgetViewModel extends BaseViewModel {
   int _activeCategory = -1;
+
+  BudgetViewModel(this.buildContext);
   int get activeCatagory => _activeCategory;
   late TextEditingController budgetNameController;
   late TextEditingController budgetAmountController;
+  final BuildContext buildContext;
 
   List categories = [
     {
@@ -55,7 +60,10 @@ class BudgetViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  createCatagory(String budgetName, String budgetAmount) {
+  createCatagory(
+    String budgetName,
+    String budgetAmount,
+  ) {
     budgetNameController.text = budgetName;
     budgetAmountController.text = budgetAmount;
 
@@ -67,6 +75,11 @@ class BudgetViewModel extends BaseViewModel {
 
     categories.insert(0, newCategory);
     _activeCategory = 0;
+
+    SnackbarService.show(
+      context: buildContext,
+      text: "Budget Created!",
+    );
     notifyListeners();
   }
 
